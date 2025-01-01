@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style type="text/css">
+            #rickroll {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #background {
+                background-color: black;
+            }
+        </style>
+    </head>
+    <body id="background">
+        <title>奇怪的界面</title>
+        <h2 style="color: white;" id="undercover">🤔是不是没加载到？点击一下页面试试</h2>
+        <script type="text/javascript">
+                // 等待2秒后再监听事件
+                async function main() {
+                    var ricked = false;
+                    var video = null; // 声明一个变量来存储视频元素
+
+                    function createVideo() {
+                        video = document.createElement("video");
+                        video.id = "rickroll";
+                        video.controls = true;
+                        video.loop = true;
+                        video.autoplay = true;
+                        video.src = "https://gitee.com/SystemFileB/systemfileb-page/raw/main/rick.mp4";
+                        video.type = "video/mp4";
+                        document.body.appendChild(video);
+}
+                    document.addEventListener("click", function(e) {
+                        if (ricked) return;
+                        ricked = true;
+                        createVideo(); // 调用创建视频的函数
+                        document.getElementById("undercover").remove();
+                    });
+                }
+                main();
+        </script>
+    </body>
+</html>
