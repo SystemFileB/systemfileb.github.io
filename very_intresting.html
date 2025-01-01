@@ -2,6 +2,7 @@
     <head>
         <style type="text/css">
             #rickroll {
+                position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
@@ -13,27 +14,35 @@
         </style>
     </head>
     <body id="background">
-            <title>奇怪的界面</title>
-            <script type="text/javascript">
+        <title>奇怪的界面</title>
+        <h2 style="color: white;" id="undercover">🤔是不是没加载到？点击一下页面试试</h2>
+        <script type="text/javascript">
+                // 等待2秒后再监听事件
+                async function main() {
+                    var ricked = false;
+                    var video = null; // 声明一个变量来存储视频元素
 
-                async function run() {
-                    document.addEventListener("DOMContentLoaded", async function() {
-                    var video = document.createElement("video");
-                    video.autoplay = true;
-                    video.loop = true;
-                    video.controls = true;
-                    video.id = "rickroll";
+                    function createVideo() {
+                        if (video) return; // 如果视频元素已经存在，则不再创建新的视频元素
 
-                    var source = document.createElement("source");
-                    source.src = "./rick.mp4";
-                    source.type = "video/mp4";
+                        video = document.createElement("video");
+                        video.id = "rickroll";
+                        video.controls = true;
+                        video.loop = true;
+                        video.autoplay = true;
+                        video.src = "./rick.mp4";
+                        video.type = "video/mp4";
+                        document.body.appendChild(video);
+                    }
 
-                    video.appendChild(source);
-                    document.body.appendChild(video);
+                    document.addEventListener("click", function(e) {
+                        if (ricked) return;
+                        ricked = true;
+                        createVideo(); // 调用创建视频的函数
+                        document.getElementById("undercover").remove();
                     });
                 }
-
-                run();
-            </script>
+                main();
+        </script>
     </body>
 </html>
