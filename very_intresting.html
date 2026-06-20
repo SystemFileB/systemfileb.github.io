@@ -7,6 +7,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
+                display: none;
             }
             #background {
                 background-color: black;
@@ -16,7 +17,7 @@
     <body id="background">
         <title>奇怪的界面</title>
         <h2 style="color: white;" id="undercover">🤔是不是没加载到？点击一下页面试试</h2>
-        <video id="rickroll" controls loop hidden>
+        <video id="rickroll" controls loop preload="metadata" playsinline>
             <source src="./rick.mp4" type="video/mp4">
         </video>
         <script type="text/javascript">
@@ -26,7 +27,7 @@
 
                     function createVideo() {
 
-                        document.getElementById("rickroll").hidden=false;
+                        document.getElementById("rickroll").style.display="block";
                         document.getElementById("rickroll").play();
                     }
 
